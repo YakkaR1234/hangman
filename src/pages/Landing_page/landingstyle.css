@@ -1,0 +1,60 @@
+.landing-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .content {
+    display: flex;
+    align-items: center;
+    width: 80%; /* Adjust width as needed */
+  }
+  
+  .image-container {
+    position: absolute;
+    left: -70px; /* Moves the image further left */
+  }
+  
+  
+  .image {
+    width: 300px;
+    margin: 90px;
+    margin-left: 300px;
+  }
+  .text-container {
+    display: flex;
+    flex-direction: column; /* Stack text and button */
+    align-items: center;
+    gap: 20px;
+    max-width: 900px; /* Adjusts width to make text longer */
+    margin-left: 180px;
+  }
+  
+  .title {
+    font-size: 180px; /* Increases text size */
+    font-weight: bold;
+    line-height: 1.5; /* Improves readability */
+  }
+  
+  .landing-button {
+    font-size: 40px; /* Increases button size */
+    padding: 20px 40px; /* Increases padding */
+    cursor: pointer;
+    margin-left: 100px;
+   
+  }
+
+  .button {
+    font-size: 20px;
+    padding: 20px 30px;
+    width: 250px;
+    cursor: pointer;
+    background: linear-gradient(to right, #152744, #367591); /* Gradient from left to right */
+    border-radius: 10px;
+    border: none;
+  }
+
+  .button:hover {
+    background: linear-gradient(to right, #367591, #152744); /* Reverse gradient on hover */
+  }

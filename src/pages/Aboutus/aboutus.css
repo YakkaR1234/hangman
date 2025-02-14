@@ -1,0 +1,69 @@
+.aboutus {
+    width: 1300px; /* Take up the full available width */
+    height: 700px; /* Adjust the height of the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Light gray background */
+  }
+  .aboutus h2 {
+    margin: 10px 0; /* Add margin to space out the heading */
+    font-size: 20px;
+    font-weight: bold;
+    transform: rotate(-90deg); /* Rotate the text 90 degrees */
+    transform-origin: left top; /* Set the rotation's origin point */
+    white-space: nowrap; /* Prevent wrapping */
+    top: 10px; /* Adjust the top margin */
+    left: -60px; /* Adjust the left position (you can tweak this value) */
+  }
+
+  .aboutus h2 {
+    margin: 20px 0; /* Add margin to space out the heading */
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* 3 columns */
+    gap: 20px; /* Space between grids */
+    margin: 20px;
+    width: 80%; /* Make the grid container take up 80% of the parent width */
+  }
+  
+  .grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px; /* Increased font size */
+    font-weight: bold;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .grid-item:hover {
+    transform: scale(1.1); /* Add a hover effect */
+  }
+  
+  /* Grid 1 - Custom width, height, and color */
+  .grid-1 {
+    width: 300px; /* Increased width */
+    height: 450px; /* Increased height */
+    background-color: #4CAF50; /* Green */
+  }
+  
+  /* Grid 2 - Custom width, height, and color */
+  .grid-2 {
+    width: 550px; /* Increased width */
+    height: 400px; /* Increased height */
+    background-color: #FF5722; /* Red */
+  }
+  
+  /* Grid 3 - Custom width, height, and color */
+  .grid-3 {
+    width: 230px; /* Increased width */
+    height: 480px; /* Increased height */
+    background-color: #2196F3; /* Blue */
+  }
+  
