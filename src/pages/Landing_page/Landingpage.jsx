@@ -1,15 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import './landingstyle.css';
-import hangman from '../../assets/hangman.png';
+
+import game from "../../assets/game.avif";
 
 const Landingpage = () => {
+  const navigate = useNavigate();  // Initialize navigate
+
+  const handleClick = () => {
+    navigate('/aboutus');  // Navigate to the AboutUs page
+  };
+
   return (
     <div className="landing-page">
       <div className="content">
         <div className="image-container">
           <motion.img 
-            src={hangman} 
+            src={game} 
             alt="Landing" 
             className="image" 
             animate={{
@@ -30,11 +38,11 @@ const Landingpage = () => {
           <h1 className="title">Hangman</h1>
         </div>
         <div className="landing-button">
-          <button className="button">Click to play</button>
+          <button className="button" onClick={handleClick}>Click to play</button> {/* Handle click */}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Landingpage;

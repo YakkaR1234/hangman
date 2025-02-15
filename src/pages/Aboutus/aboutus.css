@@ -1,28 +1,29 @@
 .aboutus {
-    width: 1300px; /* Take up the full available width */
-    height: 700px; /* Adjust the height of the container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4; /* Light gray background */
-  }
-  .aboutus h2 {
-    margin: 10px 0; /* Add margin to space out the heading */
-    font-size: 20px;
-    font-weight: bold;
-    transform: rotate(-90deg); /* Rotate the text 90 degrees */
-    transform-origin: left top; /* Set the rotation's origin point */
-    white-space: nowrap; /* Prevent wrapping */
-    top: 10px; /* Adjust the top margin */
-    left: -60px; /* Adjust the left position (you can tweak this value) */
-  }
+  width: 1300px; /* Take up the full available width */
+  height: 700px; /* Adjust the height of the container */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  background-color: #f4f4f4; /* Light gray background */
+  position: relative; /* Make sure the container has a relative position */
+}
 
-  .aboutus h2 {
-    margin: 20px 0; /* Add margin to space out the heading */
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
+.aboutus h2 {
+  margin: 0; /* Remove margin to help with centering */
+  margin-top: 20px;
+  font-size: 50px;
+  font-weight: bold;
+  white-space: nowrap; /* Prevent wrapping */
+  position: absolute; /* Use absolute positioning */
+  top: 0; /* Align to the top of the container */
+  left: 50%; /* Horizontally center */
+  transform: translateX(-50%); /* Center the text horizontally */
+}
+
+
+
+
+
   .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; /* 3 columns */

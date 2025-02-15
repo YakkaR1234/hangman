@@ -3,58 +3,75 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
-  
-  .content {
-    display: flex;
-    align-items: center;
-    width: 80%; /* Adjust width as needed */
-  }
-  
-  .image-container {
-    position: absolute;
-    left: -70px; /* Moves the image further left */
-  }
-  
-  
-  .image {
-    width: 300px;
-    margin: 90px;
-    margin-left: 300px;
-  }
-  .text-container {
-    display: flex;
-    flex-direction: column; /* Stack text and button */
-    align-items: center;
-    gap: 20px;
-    max-width: 900px; /* Adjusts width to make text longer */
-    margin-left: 180px;
-  }
-  
-  .title {
-    font-size: 180px; /* Increases text size */
-    font-weight: bold;
-    line-height: 1.5; /* Improves readability */
-  }
-  
-  .landing-button {
-    font-size: 40px; /* Increases button size */
-    padding: 20px 40px; /* Increases padding */
-    cursor: pointer;
-    margin-left: 100px;
-   
-  }
+    background-color: #f0f0f0; /* Optional background */
+}
 
-  .button {
-    font-size: 20px;
-    padding: 20px 30px;
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+    
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin: 65px 20px;
+}
+
+.image {
+    width: 150; /* Adjusted for better balance */
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 120px; /* Adjusted to prevent overflow */
+    font-weight: bold;
+    line-height: 1.2;
+    color: #152744;
+}
+
+.landing-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button {
+    font-size: 24px;
+    padding: 15px 30px;
     width: 250px;
     cursor: pointer;
-    background: linear-gradient(to right, #152744, #367591); /* Gradient from left to right */
+    background: linear-gradient(to right, #152744, #367591);
+    color: white;
     border-radius: 10px;
     border: none;
-  }
+    transition: background 0.3s ease-in-out;
+}
 
-  .button:hover {
-    background: linear-gradient(to right, #367591, #152744); /* Reverse gradient on hover */
-  }
+.button:hover {
+    background: linear-gradient(to right, #367591, #152744);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 80px; /* Smaller text on mobile */
+    }
+
+    .image {
+        width: 200px;
+    }
+
+    .button {
+        font-size: 18px;
+        width: 200px;
+    }
+}
