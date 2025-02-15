@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import './landingstyle.css';
 
+
 import game from "../../assets/game.avif";
 
 const Landingpage = () => {

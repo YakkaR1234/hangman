@@ -1,11 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Nerko+One&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Nerko One", serif;
-}
+  font-family: "Open Sans", sans-serif;}
 
 body {
   display: flex;
@@ -13,12 +10,13 @@ body {
   justify-content: center;
   padding: 0 10px;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #8dc6ff 50%, #e4f1fe 50%);
+  background: linear-gradient(to bottom, #1d1716 50%, #c7b198 50%);
+  position: relative; /* Ensure positioning context for absolutely positioned elements */
 }
 
 .container {
   width: 850px;
-  background: #22313f;
+  background: #854836; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +24,29 @@ body {
   padding: 50px 30px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative; /* Ensure relative positioning for child elements */
+}
+
+.hacker {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 8px; /* Adjust the size as needed */
+  color: #4ef037;
+  font-weight: bold;
+  width: 200px;
+  height: 100px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.hacker-text {
+  margin: 0;
+  margin-top: 30px;
+  font-family: "Open Sans", sans-serif;
 }
 
 .hangman-box {
@@ -42,6 +63,7 @@ body {
   margin-top: 15px;
   color: white;
   text-transform: uppercase;
+  font-family: "Open Sans", sans-serif;
 }
 
 .word-display {
@@ -197,6 +219,35 @@ img {
 .play-again-btn:hover {
   background: #8286c9;
 }
+
+.reload-container {
+  position: absolute;
+  top: 10px; /* Moves it to the top */
+  left: 10px; /* Moves it to the left */
+  font-size: 12px; /* Adjust for readability */
+  color: #4ef037;
+  font-weight: bold;
+  width: 200px;
+  height: 100px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px; /* Optional rounded corners */
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Optional glow effect */
+}
+.reload-container button:hover {
+  background-color: #36b829; /* Darker green on hover */
+  transform: scale(1.1); /* Slight enlargement */
+}
+
+.reload-container button:active {
+  background-color: #2a8f20; /* Even darker green on click */
+  transform: scale(1);
+}
+
 
 /* Responsive Adjustments */
 @media (max-width: 600px) {

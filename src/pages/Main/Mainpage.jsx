@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./main_page.css";
 
-const maxGuesses = 6;
+const maxGuesses = 6; // Always 6 chances
 
-const Mainpage = () => {
+const Mainpage = ({ userName }) => {
   const [currentWord, setCurrentWord] = useState("");
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState(0);
   const [hint, setHint] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [victory, setVictory] = useState(false);
+  const [definitionError, setDefinitionError] = useState(false);
+  const [helpLetters, setHelpLetters] = useState([]); // Stores revealed letters
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getRandomWord();
-  }, []);
+    if (!userName) {
+      navigate("/login");
+    } else {
+      getRandomWord();
+    }
+  }, [userName, navigate]);
 
   const getRandomWord = async () => {
     try {
-      // Fetch words related to "hangman" from Datamuse API
       const response = await fetch("https://api.datamuse.com/words?ml=hangman");
       const data = await response.json();
 
@@ -29,8 +37,21 @@ const Mainpage = () => {
       setWrongGuesses(0);
       setGameOver(false);
       setVictory(false);
+      setDefinitionError(false);
 
-      // Fetch word definition from Dictionary API
+      // Set help letters only if word length > 6
+      if (randomWord.length > 6) {
+        const numHelpLetters = Math.min(2, randomWord.length - 6); // 1-2 help letters
+        const lettersSet = new Set();
+        while (lettersSet.size < numHelpLetters) {
+          const randomIndex = Math.floor(Math.random() * randomWord.length);
+          lettersSet.add(randomWord[randomIndex]);
+        }
+        setHelpLetters([...lettersSet]);
+      } else {
+        setHelpLetters([]);
+      }
+
       fetchDefinition(randomWord);
     } catch (error) {
       console.error("Error fetching word:", error);
@@ -44,6 +65,9 @@ const Mainpage = () => {
       const response = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
       );
+      if (!response.ok) {
+        throw new Error("Definition not found.");
+      }
       const data = await response.json();
 
       if (data[0]?.meanings?.length > 0) {
@@ -54,6 +78,7 @@ const Mainpage = () => {
     } catch (error) {
       console.error("Error fetching definition:", error);
       setHint("Definition not found.");
+      setDefinitionError(true);
     }
   };
 
@@ -66,16 +91,29 @@ const Mainpage = () => {
   };
 
   useEffect(() => {
+    console.log(victory); // Log to check the victory state
     if (wrongGuesses >= maxGuesses) {
       setGameOver(true);
     }
-    if (currentWord && correctLetters.length === new Set(currentWord).size) {
+
+    if (
+      currentWord &&
+      currentWord.split("").every((letter) => correctLetters.includes(letter))
+    ) {
       setVictory(true);
     }
   }, [wrongGuesses, correctLetters, currentWord]);
 
+  const handleReload = () => {
+    setDefinitionError(false);
+    getRandomWord();
+  };
+
   return (
     <div className="container">
+      <div className="hacker">
+        <h1 className="hacker-text">Welcome, {userName}!</h1>
+      </div>
       <div className="hangman-box">
         <img src={`images/hangman-${wrongGuesses}.svg`} alt="hangman" />
         <h1>Hangman Game</h1>
@@ -86,10 +124,14 @@ const Mainpage = () => {
             <li
               key={index}
               className={`letter ${
-                correctLetters.includes(letter) ? "guessed" : ""
+                correctLetters.includes(letter) || helpLetters.includes(letter)
+                  ? "guessed"
+                  : ""
               }`}
             >
-              {correctLetters.includes(letter) ? letter : ""}
+              {correctLetters.includes(letter) || helpLetters.includes(letter)
+                ? letter
+                : "_"}
             </li>
           ))}
         </ul>
@@ -109,18 +151,23 @@ const Mainpage = () => {
             <button
               key={letter}
               onClick={() => handleLetterClick(letter)}
-              disabled={correctLetters.includes(letter) || gameOver}
+              disabled={
+                correctLetters.includes(letter) ||
+                helpLetters.includes(letter) ||
+                gameOver
+              }
             >
               {letter}
             </button>
           ))}
         </div>
       </div>
+
       {(gameOver || victory) && (
         <div className="game-model show">
           <div className="content">
             <h2 className={victory ? "victory-text" : "lost-text"}>
-              {victory ? "🎉 You Won!" : "😢 You Lost!"}
+              {victory ? "🎉 Mission success!" : "😢 Lupin hanged!"}
             </h2>
             <img
               src={`images/${victory ? "victory" : "lost"}.gif`}
@@ -134,6 +181,15 @@ const Mainpage = () => {
               🔄 Play Again
             </button>
           </div>
+        </div>
+      )}
+
+      {definitionError && (
+        <div className="reload-container">
+          <p className="error-text">Failed to load definition.</p>
+          <button className="reload-btn" onClick={handleReload}>
+            🔄 Retry
+          </button>
         </div>
       )}
     </div>
